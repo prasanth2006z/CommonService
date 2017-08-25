@@ -28,6 +28,8 @@
 		<logback.classic.version>1.2.3</logback.classic.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+		<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
+		<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 	</properties>
 
 	<dependencies>
@@ -104,15 +106,21 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
+				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<includes>
 						<include>**/UnitTestSuite.java</include>
+					</includes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<configuration>
+					<includes>
 						<include>**/IntegrationTestSuite.java</include>
 					</includes>
-					<!-- <excludes>
-						<exclude>**/IntegrationTestSuite.java</exclude>
-					</excludes> -->
+					<!-- <excludes> <exclude>**/IntegrationTestSuite.java</exclude> </excludes> -->
 				</configuration>
 			</plugin>
 			<plugin>
